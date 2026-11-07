@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="Volvan.Android\Volvan.Android.csproj">
+    <Deploy Solution="Debug|*" />
+  </Project>
+  <Project Path="Volvan.Desktop\Volvan.Desktop.csproj" />
+  <Project Path="Volvan\Volvan.csproj" />
+</Solution>
