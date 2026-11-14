@@ -5,6 +5,8 @@
   <Project Path="Volvan.Android\Volvan.Android.csproj">
     <Deploy Solution="Debug|*" />
   </Project>
+  <Project Path="Volvan.ConsoleApp/Volvan.ConsoleApp.csproj" Id="6434b99d-ae8b-419c-931b-0094975b24b2" />
+  <Project Path="Volvan.Data/Volvan.Data.csproj" Id="8915eb56-6ac9-470f-99b5-770789d8a40c" />
   <Project Path="Volvan.Desktop\Volvan.Desktop.csproj" />
   <Project Path="Volvan\Volvan.csproj" />
 </Solution>
