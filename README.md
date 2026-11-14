@@ -1,8 +1,11 @@
 # Volvan
 Сервис каршеринга автомобилей в Южно-Сахалинске
 
+## Автор
+Астраханцев Семён РПО-24/1
+
 ## Проект
-- **Описание:** Сервис каршеринга в Южно-Сахалинске с проверенными моделями автомобилей брендов Toyota и Hyundai. Сервис подходит так и для поездок по городу, так и для поездок по природе
+- **Описание:**  Сервис каршеринга в Южно-Сахалинске с проверенными моделями автомобилей брендов Toyota и Hyundai. Сервис подходит так и для поездок по городу, так и для поездок по природе. Клиентам доступен выбор машин под любые задачи - от компактных седанов до вместительных кроссоверов. Клиенты могут забронировать нужный автомобиль за пару минут через приложение на Windows или Android. Каждый автомобиль проходит обязательную проверку технического состояния перед выездом на линию
 - **Среди моделей**
     - Toyota Rav4
     - Toyota 4Runner
@@ -21,27 +24,27 @@ erDiagram
     Cars ||--|{ Rentals : ""
 
     Clients {
-        int Id PK
-        string FullName
-        int DriverExperienceYears
-        bool IsVerified
-        string PhoneNumber
+        int Id PK "NOT NULL"
+        string FullName "NOT NULL"
+        int DriverExperienceYears "NOT NULL"
+        bool IsVerified "NOT NULL"
+        string PhoneNumber "NOT NULL"
     }
 
     Cars {
-        int Id PK
-        string BrandAndModel
-        int ChildSeatCount
-        int MinuteRate
-        bool IsAvailable
+        int Id PK "NOT NULL"
+        string BrandAndModel "NOT NULL"
+        int ChildSeatCount "NOT NULL"
+        int MinuteRate "NOT NULL"
+        bool IsAvailable "NOT NULL"
     }
 
     Rentals {
-        int Id PK
-        int ClientId FK
-        int CarId FK
-        DateTime StartDate
-        int TotalCost
+        int Id PK "NOT NULL"
+        int ClientId FK "NOT NULL"
+        int CarId FK "NOT NULL"
+        DateTime StartDate "NOT NULL"
+        int TotalCost "NOT NULL"
     }
 ```
 
@@ -50,35 +53,35 @@ erDiagram
 ### Clients
 Данные о зарегистрированных пользователях сервиса
 
-| Поле | Тип | Описание |
-| :--- | :--- | :--- |
-| Id | int | Первичный ключ клиента |
-| FullName | string | Фамилия, имя и отчество клиента |
-| DriverExperienceYears | int | Стаж вождения клиента в годах |
-| IsVerified | bool | Проверены ли документы службой безопасности |
-| PhoneNumber | string | Контактный номер телефона клиента |
+| Поле | Тип | Обязательное | Описание |
+| :--- | :--- | :--- | :--- |
+| Id | int | Да (PK) | Первичный ключ клиента |
+| FullName | string | Да (NOT NULL) | Фамилия, имя и отчество клиента |
+| DriverExperienceYears | int | Да (NOT NULL) | Стаж вождения клиента в годах |
+| IsVerified | bool | Да (NOT NULL) | Проверены ли документы службой безопасности |
+| PhoneNumber | string | Да (NOT NULL) | Контактный номер телефона клиента |
 
 ### Cars
 Парк доступных автомобилей брендов Toyota и Hyundai
 
-| Поле | Тип | Описание |
-| :--- | :--- | :--- |
-| Id | int | Первичный ключ автомобиля |
-| BrandAndModel | string | Марка и модель автомобиля (например, Toyota, Hyundai) |
-| ChildSeatCount | int | Количество детских кресел, установленных в салоне |
-| MinuteRate | int | Стоимость одной минуты аренды в рублях |
-| IsAvailable | bool | Свободен ли автомобиль для бронирования в данный момент |
+| Поле | Тип | Обязательное | Описание |
+| :--- | :--- | :--- | :--- |
+| Id | int | Да (PK) | Первичный ключ автомобиля |
+| BrandAndModel | string | Да (NOT NULL) | Марка и модель автомобиля (например, Toyota, Hyundai) |
+| ChildSeatCount | int | Да (NOT NULL) | Количество детских кресел, установленных в салоне |
+| MinuteRate | int | Да (NOT NULL) | Стоимость одной минуты аренды в рублях |
+| IsAvailable | bool | Да (NOT NULL) | Свободен ли автомобиль для бронирования в данный момент |
 
 ### Rentals
 История и текущие факты аренды автомобилей клиентами
 
-| Поле | Тип | Описание |
-| :--- | :--- | :--- |
-| Id | int | Первичный ключ записи об аренде |
-| ClientId | int | Внешний ключ, ссылающийся на Id клиента |
-| CarId | int | Внешний ключ, ссылающийся на Id автомобиля |
-| StartDate | DateTime | Дата и точное время начала аренды |
-| TotalCost | int | Итоговая стоимость поездки в рублях |
+| Поле | Тип | Обязательное | Описание |
+| :--- | :--- | :--- | :--- |
+| Id | int | Да (PK) | Первичный ключ записи об аренде |
+| ClientId | int | Да (FK) | Внешний ключ, ссылающийся на Id клиента |
+| CarId | int | Да (FK) | Внешний ключ, ссылающийся на Id автомобиля |
+| StartDate | DateTime | Да (NOT NULL) | Дата и точное время начала аренды |
+| TotalCost | int | Да (NOT NULL) | Итоговая стоимость поездки в рублях |
 
 ## Связи
 Между таблицами базы данных настроены следующие связи
