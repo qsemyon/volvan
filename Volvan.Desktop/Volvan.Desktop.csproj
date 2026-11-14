@@ -13,9 +13,12 @@
 
   <ItemGroup>
     <PackageReference Include="Avalonia.Desktop" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Volvan\Volvan.csproj" />
+    <ProjectReference Include="..\Volvan.Data\Volvan.Data.csproj" />
   </ItemGroup>
 </Project>
