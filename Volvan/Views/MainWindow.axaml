@@ -3,7 +3,10 @@
         xmlns:views="using:Volvan.Views"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d"
+        Width="800"
+        Height="600"
+        WindowStartupLocation="CenterScreen"
         x:Class="Volvan.Views.MainWindow"
         Title="Volvan">
 	<views:MainView />

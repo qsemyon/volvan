@@ -1,19 +1,86 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:d="http://schemas.openxmlformats.org/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
              x:Class="Volvan.Views.MainView"
              x:CompileBindings="False">
+	<UserControl.Styles>
+		<Style Selector="TabControl /template/ ItemsPresenter">
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+		</Style>
+	</UserControl.Styles>
 	<TabControl>
 		<TabItem Header="Клиенты">
-			<ListBox ItemsSource="{Binding Clients}" />
+			<ScrollViewer>
+				<StackPanel Margin="10" Spacing="8">
+					<ListBox x:Name="ClientsListBox" ItemsSource="{Binding Clients}" Height="180" SelectionChanged="ClientsListBox_SelectionChanged">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+					<TextBlock Text="Имя" HorizontalAlignment="Center"/>
+					<TextBox x:Name="ClientNameTextBox" Width="300" HorizontalAlignment="Center"/>
+					<TextBlock Text="Телефон" HorizontalAlignment="Center"/>
+					<TextBox x:Name="ClientPhoneTextBox" Width="300" HorizontalAlignment="Center"/>
+					<StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+						<Button Content="Добавить" Click="AddClient_Click"/>
+						<Button Content="Сохранить" Click="SaveClient_Click"/>
+						<Button Content="Удалить" Click="DeleteClient_Click"/>
+					</StackPanel>
+					<TextBlock x:Name="ClientMessageTextBlock" HorizontalAlignment="Center"/>
+				</StackPanel>
+			</ScrollViewer>
 		</TabItem>
 		<TabItem Header="Автомобили">
-			<ListBox ItemsSource="{Binding Cars}" />
+			<ScrollViewer>
+				<StackPanel Margin="10" Spacing="8">
+					<ListBox x:Name="CarsListBox" ItemsSource="{Binding Cars}" Height="180" SelectionChanged="CarsListBox_SelectionChanged">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+					<TextBlock Text="Модель" HorizontalAlignment="Center"/>
+					<TextBox x:Name="CarModelTextBox" Width="300" HorizontalAlignment="Center"/>
+					<TextBlock Text="Тариф" HorizontalAlignment="Center"/>
+					<TextBox x:Name="CarRateTextBox" Width="300" HorizontalAlignment="Center"/>
+					<StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+						<Button Content="Добавить" Click="AddCar_Click"/>
+						<Button Content="Сохранить" Click="SaveCar_Click"/>
+						<Button Content="Удалить" Click="DeleteCar_Click"/>
+					</StackPanel>
+					<TextBlock x:Name="CarMessageTextBlock" HorizontalAlignment="Center"/>
+				</StackPanel>
+			</ScrollViewer>
 		</TabItem>
 		<TabItem Header="Аренды">
-			<ListBox ItemsSource="{Binding Rentals}" />
+			<ScrollViewer>
+				<StackPanel Margin="10" Spacing="8">
+					<ListBox x:Name="RentalsListBox" ItemsSource="{Binding Rentals}" Height="180" SelectionChanged="RentalsListBox_SelectionChanged">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+					<TextBlock Text="Клиент" HorizontalAlignment="Center"/>
+					<ComboBox x:Name="RentalClientComboBox" ItemsSource="{Binding Clients}" Width="300" HorizontalAlignment="Center"/>
+					<TextBlock Text="Автомобиль" HorizontalAlignment="Center"/>
+					<ComboBox x:Name="RentalCarComboBox" ItemsSource="{Binding Cars}" Width="300" HorizontalAlignment="Center"/>
+					<TextBlock Text="Дата" HorizontalAlignment="Center"/>
+					<CalendarDatePicker x:Name="RentalDatePicker" Width="300" HorizontalAlignment="Center"/>
+					<StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+						<Button Content="Добавить" Click="AddRental_Click"/>
+						<Button Content="Сохранить" Click="SaveRental_Click"/>
+						<Button Content="Удалить" Click="DeleteRental_Click"/>
+					</StackPanel>
+					<TextBlock x:Name="RentalMessageTextBlock" HorizontalAlignment="Center"/>
+				</StackPanel>
+			</ScrollViewer>
 		</TabItem>
 	</TabControl>
 </UserControl>
