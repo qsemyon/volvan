@@ -9,5 +9,5 @@ public class Rental
     public DateTime StartDate { get; set; }
     public int TotalCost { get; set; }
 
-    public override string ToString() => $"Аренда #{Id}: {Client?.FullName} взял {Car?.BrandAndModel}";
+    public override string ToString() => $"Аренда #{Id}: {Client?.FullName} взял {Car?.BrandAndModel}. Дата {StartDate:dd.MM.yyyy}";
 }

@@ -1,7 +1,9 @@
+using System;
+using System.IO;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using Volvan.ViewModels;
+using Volvan.Data;
 using Volvan.Views;
 
 namespace Volvan;
@@ -11,8 +13,8 @@ public partial class App : Application
     public override void Initialize()
     {
         SQLitePCL.Batteries_V2.Init();
-
         AvaloniaXamlLoader.Load(this);
+
 #if DEBUG
         this.AttachDeveloperTools();
 #endif
@@ -22,7 +24,7 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new Volvan.Views.MainWindow();
+            desktop.MainWindow = new MainWindow();
         }
         else if (ApplicationLifetime is IActivityApplicationLifetime singleViewFactoryApplicationLifetime)
         {
