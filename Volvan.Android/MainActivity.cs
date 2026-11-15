@@ -6,7 +6,7 @@ using Avalonia.Android;
 namespace Volvan.Android;
 
 [Activity(
-    Label = "Volvan.Android",
+    Label = "Volvan",
     Theme = "@style/MyTheme.NoActionBar",
     Icon = "@drawable/icon",
     MainLauncher = true,
