@@ -69,18 +69,24 @@ public partial class MainView : UserControl
         normalizedPhone = string.Empty;
         altPhone = string.Empty;
 
-        if (string.IsNullOrWhiteSpace(name))
-        {
+    if (string.IsNullOrWhiteSpace(name))
+    {
             ClientMessageTextBlock.Text = "Введите имя клиента";
             return false;
         }
 
-        if (phone.StartsWith("8") && phone.Length == 11)
+        if (!name.All(c => char.IsLetter(c) || c == ' '))
+        {
+            ClientMessageTextBlock.Text = "Имя может содержать только буквы";
+            return false;
+        }
+
+        if (phone.StartsWith("8") && phone.Length == 11 && phone.Substring(1).All(char.IsDigit))
         {
             normalizedPhone = "+7" + phone.Substring(1);
             altPhone = "8" + phone.Substring(1);
         }
-        else if (phone.StartsWith("+7") && phone.Length == 12)
+        else if (phone.StartsWith("+7") && phone.Length == 12 && phone.Substring(2).All(char.IsDigit))
         {
             normalizedPhone = phone;
             altPhone = "8" + phone.Substring(2);
@@ -205,14 +211,14 @@ public partial class MainView : UserControl
 
         if (!model.All(c => char.IsLetterOrDigit(c) || c == '-' || c == ' '))
         {
-            CarMessageTextBlock.Text = "Модель может содержать только буквы, цифры, пробелы и тире";
+            CarMessageTextBlock.Text = "Название модели может содержать только буквы, цифры и тире";
             rate = 0;
             return false;
         }
 
         if (model.All(char.IsDigit) || model.All(c => c == '-' || c == ' '))
         {
-            CarMessageTextBlock.Text = "Название модели не может состоять только из цифр или знаков тире";
+            CarMessageTextBlock.Text = "Название модели не может состоять только из цифр или тире";
             rate = 0;
             return false;
         }
@@ -220,7 +226,13 @@ public partial class MainView : UserControl
         string rateStr = CarRateTextBox.Text?.Trim() ?? string.Empty;
         if (!int.TryParse(rateStr, out rate) || rate <= 0)
         {
-            CarMessageTextBlock.Text = "Минутный тариф должен быть положительным числом";
+            CarMessageTextBlock.Text = "Тариф должен быть положительным числом";
+            return false;
+        }
+
+        if (rate > 100)
+        {
+            CarMessageTextBlock.Text = "Тариф не может превышать 100 рублей";
             return false;
         }
 
@@ -329,6 +341,12 @@ public partial class MainView : UserControl
             return;
         }
 
+        if (RentalDatePicker.SelectedDate.Value.Date > DateTime.Today.AddYears(1))
+        {
+            RentalMessageTextBlock.Text = "Нельзя записать дальше, чем на 1 год вперёд";
+            return;
+        }
+
         try
         {
             using var db = new AppDbContext();
@@ -369,6 +387,12 @@ public partial class MainView : UserControl
         if (RentalDatePicker.SelectedDate.Value.Date < DateTime.Today)
         {
             RentalMessageTextBlock.Text = "Дата не может быть в прошлом";
+            return;
+        }
+
+        if (RentalDatePicker.SelectedDate.Value.Date > DateTime.Today.AddYears(1))
+        {
+            RentalMessageTextBlock.Text = "Нельзя записать дальше, чем на 1 год вперёд";
             return;
         }
 
